@@ -1,0 +1,15 @@
+{% extends "main/base.html" %}
+{% block header %}
+    <div class="jumbotron">
+        <h1>开始你的学习笔记.</h1>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h2>
+        <a href="{% url 'users:register' %}">注册一个账号</a>来开始你独有的学习笔记吧, 创建你喜欢的任何主题和内容!
+    </h2>
+    <h2>
+        无论何时你get到了关于你任何主题的灵感, 打开笔记本记录下来吧, 毕竟, 好记性不如烂笔头哦!
+    </h2>
+{% endblock %}

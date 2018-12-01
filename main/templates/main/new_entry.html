@@ -1,0 +1,11 @@
+{% extends "main/base.html" %}
+{% block content %}
+    <p><a href="{% url 'main:topic' topic.id %}">{{ topic }}</a></p>
+
+    <p>增加新条目</p>
+    <form action="{% url 'main:new_entry' topic.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">新增</button>
+    </form>
+{% endblock %}

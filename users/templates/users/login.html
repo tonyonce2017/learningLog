@@ -1,0 +1,16 @@
+{% extends "main/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h2>登入你的账户.</h2>
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'users:login' %}" method="post" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        <button name="submit" class="btn btn-primary">登录</button>
+        <input type="hidden" name="next" value="{% url 'main:index' %}"/>
+    </form>
+{% endblock %}
