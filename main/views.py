@@ -51,6 +51,37 @@ def new_topic(request):
 
 
 @login_required()
+def edit_topic(request, topic_id):
+    """编辑主题"""
+    topic = Topic.objects.get(id=topic_id)
+    if topic.owner != request.user:
+        return Http404
+
+    if request.method != 'POST':
+        form = TopicForm(instance=topic)
+    else:
+        form = TopicForm(instance=topic, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('main:topics'))
+
+    context = { 'topic': topic, 'form': form}
+    return render(request, 'main/edit_topic.html', context)
+
+
+@login_required()
+def delete_topic(request, topic_id):
+    """删除主题"""
+    topic = Topic.objects.get(id=topic_id)
+    if topic.owner != request.user:
+        return Http404
+
+    Entry.objects.filter(topic=topic).delete()
+    Topic.objects.filter(id=topic_id).delete()
+    return HttpResponseRedirect(reverse('main:topics'))
+
+
+@login_required()
 def new_entry(request, topic_id):
     """添加新的条目"""
     topic = Topic.objects.get(id=topic_id)

@@ -14,11 +14,11 @@
                 <h3>
                     {{ entry.title }}
                     <small>
-                        <a href="{% url 'main:edit_entry' entry.id %}">编辑条目</a>
+                        <a href="{% url 'main:edit_entry' entry.id %}">编辑</a>
                     </small>
                 </h3>
                 <p>
-                    {{ entry.date_added }}
+                    更新时间: {{ entry.date_added }}
                 </p>
             </div>
             <div class="panel-body">

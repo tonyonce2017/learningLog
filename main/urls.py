@@ -8,4 +8,6 @@ urlpatterns =[
     path('topics/new_topic', views.new_topic, name='new_topic'),
     path('new_entry/<topic_id>', views.new_entry, name='new_entry'),
     path('edit_entry/<entry_id>', views.edit_entry, name='edit_entry'),
+    path('edit_topic/<topic_id>', views.edit_topic, name='edit_topic'),
+    path('delete_topic/<topic_id>', views.delete_topic, name='delete_topic'),
 ]

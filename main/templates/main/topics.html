@@ -9,6 +9,10 @@
         <li>
             <h3>
                 <a href="{% url 'main:topic' topic.id %}">{{ topic }}</a>
+                <small>
+                    【<a href="{% url 'main:edit_topic' topic.id %}">编辑</a>】
+                    【<a href="{% url 'main:delete_topic' topic.id %}">删除</a>】
+                </small>
             </h3>
         </li>
         {% empty %}
@@ -16,6 +20,6 @@
     {% endfor %}
     </ul>
     <h3>
-        <a href="{% url 'main:new_topic' %}">新增一个主题</a>
+        <a href="{% url 'main:new_topic' %}">新增主题</a>
     </h3>
 {% endblock %}
