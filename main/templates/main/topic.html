@@ -14,7 +14,8 @@
                 <h3>
                     {{ entry.title }}
                     <small>
-                        <a href="{% url 'main:edit_entry' entry.id %}">编辑</a>
+                        【<a href="{% url 'main:edit_entry' entry.id %}">编辑</a>】
+                        【<a href="{% url 'main:delete_entry' entry.id %}">删除</a>】
                     </small>
                 </h3>
                 <p>

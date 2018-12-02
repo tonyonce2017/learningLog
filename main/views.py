@@ -55,7 +55,7 @@ def edit_topic(request, topic_id):
     """编辑主题"""
     topic = Topic.objects.get(id=topic_id)
     if topic.owner != request.user:
-        return Http404
+        raise Http404
 
     if request.method != 'POST':
         form = TopicForm(instance=topic)
@@ -74,7 +74,7 @@ def delete_topic(request, topic_id):
     """删除主题"""
     topic = Topic.objects.get(id=topic_id)
     if topic.owner != request.user:
-        return Http404
+        raise Http404
 
     Entry.objects.filter(topic=topic).delete()
     Topic.objects.filter(id=topic_id).delete()
@@ -121,3 +121,13 @@ def edit_entry(request, entry_id):
     return render(request, 'main/edit_entry.html', context)
 
 
+@login_required()
+def delete_entry(request, entry_id):
+    """删除条目"""
+    entry = Entry.objects.get(id=entry_id)
+    topic = entry.topic
+    if topic.owner != request.user:
+        raise Http404
+
+    entry.delete()
+    return HttpResponseRedirect(reverse('main:topic', args=[topic.id]))
